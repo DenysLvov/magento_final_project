@@ -1,4 +1,4 @@
-package denys.Tests;
+package denys.tests;
 
 public class BaseTest {
 }
