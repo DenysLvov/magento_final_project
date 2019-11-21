@@ -22,3 +22,14 @@ home_and_decor_xpath = //a[@class='level0 has-children'][contains(text(),'Home &
 
 4) Check Price filter
             price_selection_xpath = (//a/span[@class='price']//..)[1]
+
+5) Check add to Wishlist
+account-xpath = //span[@class='label'][(contains(text(),'Account'))]
+    |
+    logIn_xpath = //div[@class='links']//a[@title='Log In']
+            |
+            email_address_xpath = //input[@type='email'][@title='Email Address']
+            |
+            password_xpath = //input[@type='password'][@title='Password']
+            |
+            button_login_xpath = //button[@title='Login']
