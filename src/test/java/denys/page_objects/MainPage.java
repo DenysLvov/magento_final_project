@@ -2,6 +2,7 @@ package denys.page_objects;
 
 import denys.elements.Button;
 import denys.elements.DropDownList;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
@@ -23,7 +24,7 @@ public class MainPage {
 
 
     // enums for Your Language menu
-    enum Language {
+    public enum Language {
         AUTOMATION("Automation"),
         ENGLISH("English");
 
@@ -39,19 +40,21 @@ public class MainPage {
         }
     }
 
+    @Step
     public MainPage setLanguage(Language language) {
         getLanguageDropDown().select(language.toString());
         return this;
     }
 
+    @Step
     public MainPage clickHomeAndDecorMenu() {
         getHomeAndDecor().click();
         return this;
     }
 
     //Q1: Is it correct? - class will have giant num of methods.
-    //Q2: How to call Electronics only in Home & Decor context
-    //Q3: Is Home & Decor
+    //Q2: How to call Electronics only in Home & Decor context --> clickHomeAndDecorMenu().selectItem("Electronics")
+
     public Electronics clickOnElectronicsItem() {
         getElectronicsSubMenu().click();
         return new Electronics();

@@ -1,5 +1,6 @@
 package denys.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class InputField extends TextField {
@@ -7,10 +8,12 @@ public class InputField extends TextField {
         super(locator, description);
     }
 
+    @Step
     public void setText(String text){
         get().sendKeys(text);
     }
 
+    @Step
     public void clear(){
         get().clear();
     }

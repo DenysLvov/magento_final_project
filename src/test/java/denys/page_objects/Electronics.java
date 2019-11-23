@@ -2,6 +2,7 @@ package denys.page_objects;
 
 import denys.elements.Button;
 import denys.elements.DropDownList;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,17 +23,20 @@ public class Electronics extends AbstractPage {
     @Getter
     private DropDownList ShowSelectionList = new DropDownList(showSelectionLst,"SHOW list");
 
+    @Step
     public Electronics clickShowAsList() {
         ShowAsList.click();
         return this;
     }
 
+    @Step
     public Electronics clickShowDropDown(int value){
         ShowSelectionList.select(value);
         return this;
     }
 
-    public int getProductsnumber(){
+    @Step
+    public int getProductsNumber(){
         List<WebElement> welist = getDriver().findElements(productInList);
         return welist.size();
     }

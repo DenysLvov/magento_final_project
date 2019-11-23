@@ -1,5 +1,6 @@
 package denys.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class Button extends TextField {
@@ -8,6 +9,7 @@ public class Button extends TextField {
         super(locator, description);
     }
 
+    @Step
     public void click(){
         get().click();
     }

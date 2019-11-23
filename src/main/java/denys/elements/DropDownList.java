@@ -1,5 +1,6 @@
 package denys.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
@@ -8,10 +9,12 @@ public class DropDownList extends TextField{
         super(locator, description);
     }
 
+    @Step ("select by id")
     public void select(int id){
         getSelectElement().selectByIndex(id);
     }
 
+    @Step ("select by text")
     public void select(String text){
         getSelectElement().selectByVisibleText(text);
     }
