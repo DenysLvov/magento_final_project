@@ -19,4 +19,8 @@ public class DropDownList extends TextField{
     private Select getSelectElement(){
         return new Select(get());
     }
+
+    public void click(){
+        get().click();
+    }
 }
