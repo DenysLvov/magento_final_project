@@ -27,7 +27,10 @@ public class TestSet extends BaseTest{
                .focusHomeAndDecorMenu()
                .clickOnElectronicsItem()
                .clickShowAsList()
-               .clickShowDropDown("5");
+               .clickShowDropDown("5").clickNextPgBtn();
+
+
+       //Magic should be here
 
 
    }
