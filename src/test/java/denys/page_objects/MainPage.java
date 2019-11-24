@@ -5,6 +5,10 @@ import denys.elements.DropDownList;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import static denys.DriverManager.getDriver;
 
 
 public class MainPage {
@@ -47,8 +51,8 @@ public class MainPage {
     }
 
     @Step
-    public MainPage clickHomeAndDecorMenu() {
-        getHomeAndDecor().click();
+     public MainPage focusHomeAndDecorMenu() {
+        getHomeAndDecor().setFocusOn();
         return this;
     }
 

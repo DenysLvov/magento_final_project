@@ -13,8 +13,8 @@ import static denys.DriverManager.getDriver;
 
 public class Electronics extends AbstractPage {
 
-    private By showAsListBtn = By.xpath("//a[@class='list'])[1]");
-    private By showSelectionLst = By.xpath("//select[@title='Results per page'])[1]");
+    private By showAsListBtn = By.xpath("(//a[@class='list'])[1]");
+    private By showSelectionLst = By.xpath("(//select[@title='Results per page'])[1]");
     private By productInList = By.xpath("//div[@class='product-primary']");
 
     @Getter
@@ -30,7 +30,7 @@ public class Electronics extends AbstractPage {
     }
 
     @Step
-    public Electronics clickShowDropDown(int value){
+    public Electronics clickShowDropDown(String value){
         ShowSelectionList.select(value);
         return this;
     }
