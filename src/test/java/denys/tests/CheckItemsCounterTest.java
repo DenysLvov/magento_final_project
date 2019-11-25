@@ -4,7 +4,7 @@ import denys.page_objects.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestSet extends BaseTest{
+public class CheckItemsCounterTest extends BaseTest{
 
     @Test (description = "Number of present items is equal to the counter")
     public void checkItemCounterTest(){
@@ -18,21 +18,4 @@ public class TestSet extends BaseTest{
 
         Assert.assertEquals(num,12,"Number of products in list = 12");
    }
-
-   @Test (description = "Only 5 items are shown on each page if SHOW selection was set to 5")
-   public void  checkShowSelect(){
-       MainPage mainPage = new MainPage();
-
-       mainPage.setLanguage(MainPage.Language.ENGLISH)
-               .focusHomeAndDecorMenu()
-               .clickOnElectronicsItem()
-               .clickShowAsList()
-               .clickShowDropDown("5").clickNextPgBtn();
-
-
-       //Magic should be here
-
-
-   }
-
 }
