@@ -1,0 +1,8 @@
+<suite name="TestSuite" thread-count="2" parallel="classes">
+    <test name="myTests">
+        <classes>
+            <class name="denys.tests.TestSet"/>
+            <class name="denys.tests.TestSet2"/>
+        </classes>
+    </test>
+</suite>

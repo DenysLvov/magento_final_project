@@ -31,7 +31,7 @@ public class Electronics extends AbstractPage {
     private DropDownList ShowSelectionList = new DropDownList(showSelectionLst,"SHOW list");
 
     @Getter
-    private TextField PagesAmount = new DropDownList(pagesAmount,"SHOW list");
+    private TextField PagesAmount = new TextField(pagesAmount,"SHOW list");
 
     @Step
     public Electronics clickShowAsList() {

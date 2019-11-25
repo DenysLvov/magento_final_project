@@ -9,7 +9,7 @@ import static denys.DriverManager.killDriver;
 public class BaseTest {
 
     @BeforeClass
-    public void setupPage(){
+    public void openPage(){
         getDriver().get("http://magento.mainacad.com/index.php/english/");
     }
 
