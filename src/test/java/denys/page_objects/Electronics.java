@@ -7,7 +7,6 @@ import denys.helpers.StringProcessor;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -25,6 +24,8 @@ public class Electronics extends AbstractPage {
     private By sortByDropDwnList = By.xpath("//select[@title='Sort By']");
     private By item = By.xpath("//*[@id='products-list']/li");
     private By itemPrice = By.xpath("//div[@class='price-box']//span[@class='price']");
+    private By priceSelection0_999 = By.xpath("(//a/span[@class='price']//..)[1]");
+    private By priceSelection1000above= By.xpath("(//a/span[@class='price']//..)[4]");
 
     @Getter
     private Button ShowAsList = new Button(showAsListBtn, "Show as list");
@@ -44,6 +45,12 @@ public class Electronics extends AbstractPage {
     @Getter
     private TextField ItemPrice = new TextField(itemPrice, "Price of a product");
 
+    @Getter
+    private Button PriceSelectionFilterOne = new Button(priceSelection0_999, "PRICE selection from 0 - 999");
+
+    @Getter
+    private Button PriceSelectionFilterTwo = new Button(priceSelection1000above, "PRICE selection from 0 - 999");
+
     @Step
     public Electronics clickShowAsList() {
         ShowAsList.click();
@@ -60,6 +67,19 @@ public class Electronics extends AbstractPage {
     public int getProductsNumber() {
         List<WebElement> welist = getDriver().findElements(productInList);
         return welist.size();
+    }
+
+    @Step
+    public Electronics clickPriceFilter(String filter) {
+        switch (filter) {
+            case "0-999":
+                PriceSelectionFilterOne.click();
+                break;
+            case "1.000.000 and above":
+                PriceSelectionFilterTwo.click();
+                break;
+            }
+        return this;
     }
 
     public void checkNumbersOfItemsOnEachPage(int expectedItems) {
@@ -104,13 +124,24 @@ public class Electronics extends AbstractPage {
         return this;
     }
 
-    public void checkPrices() {
-       List<WebElement> eltList = getDriver().findElements(itemPrice);
+    // Check prices sorted from low to high
+    public void checkSortedPrices() {
+        List<WebElement> eltList = getDriver().findElements(itemPrice);
         for (int i = 0; i < eltList.size() - 1; i++) {
             double priceCurrent = StringProcessor.stringToDouble(eltList.get(i).getText());
             double priceNext = StringProcessor.stringToDouble(eltList.get(i + 1).getText());
             Assert.assertTrue(priceNext > priceCurrent,
-                    String.format("Expect price %s of next item bigger than price %s of current item",priceNext, priceCurrent));
+                    String.format("Expect price %s of next item bigger than price %s of current item", priceNext, priceCurrent));
         }
+    }
+
+    //Check prices < 100
+    public void checkPricesValues() {
+        List<WebElement> eltList = getDriver().findElements(priceSelection0_999);
+        for (WebElement e : eltList) {
+            double price = StringProcessor.stringToDouble(e.getText());
+            Assert.assertTrue(price < 100.00, String.format("Price %s less than 100", price));
+        }
+
     }
 }
