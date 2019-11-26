@@ -59,9 +59,9 @@ public class BaseElement {
     }
 
     private void highlight(WebElement element) {
-   //     unhighlight();
+        unhighlight();
         lastElement = element;
- //       lastBorder = (String) ((JavascriptExecutor) getDriver()).executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "color: yellow; border: 2px solid yellow;");
+        lastBorder = (String) ((JavascriptExecutor) getDriver()).executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "color: cyan; border: 2px solid cyan;");
 
     }
 
@@ -75,7 +75,9 @@ public class BaseElement {
         if (lastElement != null) {
             try {
                 ((JavascriptExecutor) getDriver()).executeScript("arguments[0].setAttribute('style', arguments[1]);", lastElement, lastBorder);
-            } finally {
+            } catch (Exception e)
+            {}
+            finally {
                 lastElement = null;
             }
         }

@@ -10,7 +10,7 @@ public class CheckItemsCounterTest extends BaseTest{
     public void checkItemCounterTest(){
         MainPage mainPage = new MainPage();
 
-        int num = mainPage.setLanguage(MainPage.Language.ENGLISH)
+        int num = mainPage.setLanguage(MainPage.Language.AUTOMATION)
                 .focusHomeAndDecorMenu()
                 .clickOnElectronicsItem()
                 .clickShowAsList()

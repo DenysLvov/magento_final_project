@@ -9,15 +9,11 @@ public class CheckShowSelectTest extends BaseTest{
     public void  checkShowSelect(){
         MainPage mainPage = new MainPage();
 
-        mainPage.setLanguage(MainPage.Language.ENGLISH)
+        mainPage.setLanguage(MainPage.Language.AUTOMATION)
                 .focusHomeAndDecorMenu()
                 .clickOnElectronicsItem()
                 .clickShowAsList()
-                .clickShowDropDown("5").clickNextPgBtn();
-
-
-        //Magic should be here
-
-
-    }
+                .clickShowDropDown("5")
+                .checkNumbersOfItemsOnEachPage(5);
+        }
 }
