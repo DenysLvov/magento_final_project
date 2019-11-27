@@ -14,7 +14,7 @@ import java.util.List;
 
 import static denys.DriverManager.getDriver;
 
-public class Electronics extends AbstractPage {
+public class ElectronicsPage extends AbstractPage {
 
     private By showAsListBtn = By.xpath("(//a[@class='list'])[1]");
     private By showSelectionLst = By.xpath("(//select[@title='Results per page'])[1]");
@@ -52,13 +52,13 @@ public class Electronics extends AbstractPage {
     private Button PriceSelectionFilterTwo = new Button(priceSelection1000above, "PRICE selection from 0 - 999");
 
     @Step
-    public Electronics clickShowAsList() {
+    public ElectronicsPage clickShowAsList() {
         ShowAsList.click();
         return this;
     }
 
     @Step
-    public Electronics clickShowDropDown(String value) {
+    public ElectronicsPage clickShowDropDown(String value) {
         ShowSelectionList.select(value);
         return this;
     }
@@ -70,7 +70,7 @@ public class Electronics extends AbstractPage {
     }
 
     @Step
-    public Electronics clickPriceFilter(String filter) {
+    public ElectronicsPage clickPriceFilter(String filter) {
         switch (filter) {
             case "0-999":
                 PriceSelectionFilterOne.click();
@@ -119,7 +119,7 @@ public class Electronics extends AbstractPage {
         }
     }
 
-    public Electronics setSortBy(SortBy SortBy) {
+    public ElectronicsPage setSortBy(SortBy SortBy) {
         getSortBy().select(SortBy.toString());
         return this;
     }

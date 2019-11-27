@@ -1,6 +1,6 @@
 package denys.tests;
 
-import denys.page_objects.Electronics;
+import denys.page_objects.ElectronicsPage;
 import denys.page_objects.MainPage;
 import org.testng.annotations.Test;
 
@@ -15,7 +15,7 @@ public class CheckSortByTest extends BaseTest {
                 .clickOnElectronicsItem()
                 .clickShowAsList()
                 .clickShowDropDown("25")
-                .setSortBy(Electronics.SortBy.PRICE)
+                .setSortBy(ElectronicsPage.SortBy.PRICE)
                 .checkSortedPrices();
 
     }

@@ -5,10 +5,6 @@ import denys.elements.DropDownList;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
-import static denys.DriverManager.getDriver;
 
 
 public class MainPage {
@@ -16,6 +12,8 @@ public class MainPage {
     private By languageDropDownLst = By.xpath("//select[@id='select-language']");
     private By homeAndDecorBtn = By.xpath(" //a[@class='level0 has-children'][contains(text(),'Home & Decor')]");
     private By electronicsSubMenu = By.xpath("//a[contains(text(),'Electronics')]");
+    private By accountBtn = By.xpath("//span[@class='label'][(contains(text(),'Account'))]");
+    private By logInBtn = By.xpath("//div[@class='links']//a[@title='Log In']");
 
     @Getter
     private DropDownList LanguageDropDown = new DropDownList(languageDropDownLst, "Language dropdown list");
@@ -25,6 +23,12 @@ public class MainPage {
 
     @Getter
     private Button ElectronicsSubMenu = new Button(electronicsSubMenu, "HOME&DECOR - Electronics");
+
+    @Getter
+    private Button Account = new Button(accountBtn, "ACCOUNT button");
+
+    @Getter
+    private Button Login = new Button(logInBtn, "ACCOUNT -> LogIn button");
 
 
     // enums for Your Language menu
@@ -51,18 +55,27 @@ public class MainPage {
     }
 
     @Step
-     public MainPage focusHomeAndDecorMenu() {
+    public MainPage focusHomeAndDecorMenu() {
         getHomeAndDecor().setFocusOn();
         return this;
     }
 
-    //Q1: Is it correct? - class will have giant num of methods.
-    //Q2: How to call Electronics only in Home & Decor context --> clickHomeAndDecorMenu().selectItem("Electronics")
-
-    public Electronics clickOnElectronicsItem() {
+    @Step
+    public ElectronicsPage clickOnElectronicsItem() {
         getElectronicsSubMenu().click();
-        return new Electronics();
+        return new ElectronicsPage();
     }
 
+    @Step
+    //TODO: Q: Move this to AbstractPage?
+    public MainPage clickAccount(){
+        Account.click();
+        return this;
+    }
 
+    @Step
+    public LoginPage clickLogIn(){
+        Login.click();
+        return new LoginPage();
+    }
 }
