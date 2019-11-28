@@ -19,5 +19,8 @@ public class CheckAddToWishListTest extends BaseTest {
                 .clickOnElectronicsItem()
                 .clickShowAsList()
                 .clickShowDropDown("25");
+        //TODO: chooseRandomItem{}
+        //TODO: clickAddToWish()
+        //TODO: check WISHLIST
     }
 }
