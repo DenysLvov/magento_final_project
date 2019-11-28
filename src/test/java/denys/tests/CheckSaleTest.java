@@ -12,7 +12,8 @@ public class CheckSaleTest extends BaseTest{
         mainPage.setLanguage(MainPage.Language.AUTOMATION)
                 .clickOnSale()
                 .clickgridView()
-                .clickShowDropDown("36");
+                .clickShowDropDown("36")
+                .comparePrices();
     }
 
 }
