@@ -79,13 +79,13 @@ public class MainPage {
     @Step
     //TODO: Q: Move this to AbstractPage?
     public MainPage clickAccount(){
-        Account.click();
+        getAccount().click();
         return this;
     }
 
     @Step
     public LoginPage clickLogIn(){
-        Login.click();
+        getLogin().click();
         return new LoginPage();
     }
 }

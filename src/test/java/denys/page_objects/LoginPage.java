@@ -27,21 +27,21 @@ public class LoginPage extends AbstractPage{
 
     @Step
     public LoginPage fillEmailField(String email){
-        Email.setText(email);
+        getEmail().setText(email);
         //Assert.assertEquals(email, Email.getText(), String.format("Expected email %s but entered was %s",email, Email.getText()));
         return this;
     }
 
     @Step
     public LoginPage fillPasswordField(String password){
-        Password.setText(password);
+        getPassword().setText(password);
         //Assert.assertEquals(password.length(), Password.getText().length(), "Check length of password");
         return this;
     }
 
     @Step
     public MainPage clickLoginbtn(){
-        Login.click();
+        getLogin().click();
         return new MainPage();
     }
 

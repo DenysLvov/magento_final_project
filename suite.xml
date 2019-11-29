@@ -1,8 +1,12 @@
 <suite name="TestSuite" thread-count="1" parallel="classes">
     <test name="myTests">
         <classes>
+            <!--class name="denys.tests.CheckAddToWishListTest"/-->
             <class name="denys.tests.CheckItemsCounterTest"/>
-            <!--class name="denys.tests.TestSet2"/-->
+            <class name="denys.tests.CheckPriceFilterTest"/>
+            <class name="denys.tests.CheckSaleTest"/>
+            <class name="denys.tests.CheckShowSelectTest"/>
+            <class name="denys.tests.CheckSortByTest"/>
         </classes>
     </test>
 </suite>
