@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.Random;
 
 import static denys.DriverManager.getDriver;
 
@@ -142,6 +143,16 @@ public class ElectronicsPage extends AbstractPage {
             double price = StringProcessor.stringToDouble(e.getText());
             Assert.assertTrue(price < 100.00, String.format("Price %s less than 100", price));
         }
+    }
 
+    public ElectronicsPage addRandomProductToWishList(){
+        Random randomGenerator = new Random();
+
+        List<WebElement> weList = getDriver().findElements(item);
+        int numOfItems = weList.size();
+        int i = randomGenerator.nextInt(numOfItems);
+
+        //TODO: weList.get(i).clickAddToWishListBtn()
+        return this;
     }
 }
