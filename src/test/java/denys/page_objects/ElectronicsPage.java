@@ -7,6 +7,7 @@ import denys.helpers.StringProcessor;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -23,10 +24,9 @@ public class ElectronicsPage extends AbstractPage {
     private By nextPgArrowBtn = By.xpath("//a[@title='Next'][1]");
     private By pagesNumber = By.xpath("//p[@class='amount amount--has-pages']");
     private By sortByDropDwnList = By.xpath("//select[@title='Sort By']");
-    private By item = By.xpath("//*[@id='products-list']/li");
-    private By itemPrice = By.xpath("//div[@class='price-box']//span[@class='price']");
     private By priceSelection0_999 = By.xpath("(//a/span[@class='price']//..)[1]");
     private By priceSelection1000above= By.xpath("(//a/span[@class='price']//..)[4]");
+    private By item = By.xpath("//*[@id='products-list']/li");
 
     @Getter
     private Button ShowAsList = new Button(showAsListBtn, "Show as list");
@@ -44,13 +44,12 @@ public class ElectronicsPage extends AbstractPage {
     private DropDownList SortBy = new DropDownList(sortByDropDwnList, "SORT BY drop-down list");
 
     @Getter
-    private TextField ItemPrice = new TextField(itemPrice, "Price of a product");
-
-    @Getter
     private Button PriceSelectionFilterOne = new Button(priceSelection0_999, "PRICE selection from 0 - 999");
 
     @Getter
     private Button PriceSelectionFilterTwo = new Button(priceSelection1000above, "PRICE selection from 0 - 999");
+
+    public ProductItem productItem = new ProductItem();
 
     @Step
     public ElectronicsPage clickShowAsList() {
@@ -127,7 +126,7 @@ public class ElectronicsPage extends AbstractPage {
 
     // Check prices sorted from low to high
     public void checkSortedPrices() {
-        List<WebElement> eltList = getDriver().findElements(itemPrice);
+        List<WebElement> eltList = getDriver().findElements(productItem.getItemPrice().getLocator());
         for (int i = 0; i < eltList.size() - 1; i++) {
             double priceCurrent = StringProcessor.stringToDouble(eltList.get(i).getText());
             double priceNext = StringProcessor.stringToDouble(eltList.get(i + 1).getText());
@@ -138,21 +137,25 @@ public class ElectronicsPage extends AbstractPage {
 
     //Check prices < 100
     public void checkPricesValues() {
-        List<WebElement> eltList = getDriver().findElements(priceSelection0_999);
-        for (WebElement e : eltList) {
-            double price = StringProcessor.stringToDouble(e.getText());
+        List<WebElement> elmntsList = getDriver().findElements(priceSelection0_999);
+        for (WebElement we : elmntsList) {
+            double price = StringProcessor.stringToDouble(we.getText());
             Assert.assertTrue(price < 100.00, String.format("Price %s less than 100", price));
         }
     }
 
-    public ElectronicsPage addRandomProductToWishList(){
+    @Step
+    public String addRandomProductToWishList(){
         Random randomGenerator = new Random();
 
         List<WebElement> weList = getDriver().findElements(item);
-        int numOfItems = weList.size();
+        int numOfItems = weList.size()-1;
         int i = randomGenerator.nextInt(numOfItems);
+        //Scrolls to element to be clicked
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", weList.get(i));
+        String name = weList.get(i).findElement(productItem.getName().getLocator()).getText();
+        weList.get(i).findElement(productItem.getAddToWishList().getLocator()).click();
 
-        //TODO: weList.get(i).clickAddToWishListBtn()
-        return this;
+        return name;
     }
 }

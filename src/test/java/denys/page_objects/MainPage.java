@@ -7,14 +7,13 @@ import lombok.Getter;
 import org.openqa.selenium.By;
 
 
-public class MainPage {
+public class MainPage extends AbstractPage{
 
     private By languageDropDownLst = By.xpath("//select[@id='select-language']");
     private By homeAndDecorBtn = By.xpath(" //a[@class='level0 has-children'][contains(text(),'Home & Decor')]");
     private By electronicsSubMenu = By.xpath("//a[contains(text(),'Electronics')]");
-    private By accountBtn = By.xpath("//span[@class='label'][(contains(text(),'Account'))]");
-    private By logInBtn = By.xpath("//div[@class='links']//a[@title='Log In']");
     private By saleBtn = By.xpath("//a[contains(text(),'Sale')]");
+
 
     @Getter
     private DropDownList LanguageDropDown = new DropDownList(languageDropDownLst, "Language dropdown list");
@@ -24,12 +23,6 @@ public class MainPage {
 
     @Getter
     private Button ElectronicsSubMenu = new Button(electronicsSubMenu, "HOME&DECOR - Electronics");
-
-    @Getter
-    private Button Account = new Button(accountBtn, "ACCOUNT button");
-
-    @Getter
-    private Button Login = new Button(logInBtn, "ACCOUNT -> LogIn button");
 
     @Getter
     private Button Sale = new Button(saleBtn, "Main menu SALE");
@@ -76,16 +69,5 @@ public class MainPage {
         return new SalePage();
     }
 
-    @Step
-    //TODO: Q: Move this to AbstractPage?
-    public MainPage clickAccount(){
-        getAccount().click();
-        return this;
-    }
 
-    @Step
-    public LoginPage clickLogIn(){
-        getLogin().click();
-        return new LoginPage();
-    }
 }
