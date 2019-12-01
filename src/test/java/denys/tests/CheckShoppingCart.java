@@ -2,12 +2,15 @@ package denys.tests;
 
 import denys.page_objects.CartPage;
 import denys.page_objects.MainPage;
+import io.qameta.allure.Step;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 public class CheckShoppingCart extends BaseTest {
 
     @AfterMethod
+    @Step
     public void emptyCart(){
         CartPage cartPage = new CartPage();
         if(cartPage.getEmptyCart().isExists()){
@@ -30,6 +33,8 @@ public class CheckShoppingCart extends BaseTest {
                 .clickGridViewBtn()
                 .clickShowDropDown("36")
                 .clickRandomProduct()
-                .clickAddToCart();
+                .clickAddToCart()
+                .checkCartPrices();
+
     }
 }

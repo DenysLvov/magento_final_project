@@ -23,7 +23,7 @@ public class DriverManager {
         WebDriverManager.chromedriver().setup();
         threadDriver.set(new ChromeDriver());
 
-        threadDriver.get().manage().window().fullscreen();
+        //threadDriver.get().manage().window().fullscreen();
         threadDriver.get().manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         threadDriver.get().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
     }

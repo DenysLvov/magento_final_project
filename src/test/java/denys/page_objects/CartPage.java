@@ -2,6 +2,7 @@ package denys.page_objects;
 
 import denys.elements.Button;
 import denys.elements.TextField;
+import denys.helpers.StringProcessor;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
@@ -15,6 +16,8 @@ public class CartPage extends AbstractPage{
     private By productName = By.xpath("//h2[@class='product-name']");
     private By productPrice = By.xpath("//td[@class='product-cart-price']/span");
     private By emptyCartBtn = By.xpath("//button[@value='empty_cart']");
+    private By grandTotal = By.xpath("//strong//span[@class='price']");
+    private By subTotal = By.xpath("//td[@class='product-cart-total']//span[@class='price']");
 
     @Getter
     private TextField PageTitle = new TextField(pageTitle,"SHOPPING CART title");
@@ -27,6 +30,12 @@ public class CartPage extends AbstractPage{
 
     @Getter
     private Button EmptyCart = new Button(emptyCartBtn,"Empty Cart");
+
+    @Getter
+    private TextField GrandTotal = new TextField(grandTotal,"Grand Total price");
+
+    @Getter
+    private TextField SubTotal = new TextField(subTotal,"SubTotal price");
 
 
     //Constructors
@@ -64,5 +73,12 @@ public class CartPage extends AbstractPage{
         //soft assertion due to some products hasn't price
         softAssert.assertEquals(expectProdPrice, actualPrice,
                 String.format("Expected name: %s but found: %s",expectProdPrice, actualPrice));
+    }
+
+    public void checkCartPrices() {
+        double grandTotal = StringProcessor.stringToDouble(GrandTotal.getText());
+        double subTotal = StringProcessor.stringToDouble(SubTotal.getText());
+        Assert.assertEquals(grandTotal, subTotal,
+                String.format("Expected: 'Grand total' value %s  = Subtotal value %s", grandTotal, subTotal));
     }
 }
