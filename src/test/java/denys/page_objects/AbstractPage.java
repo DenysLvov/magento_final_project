@@ -5,10 +5,12 @@ import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.testng.asserts.Assertion;
 
 import static denys.DriverManager.getDriver;
 
 public class AbstractPage {
+    protected Assertion softAssert = new Assertion();
 
     private By accountBtn = By.xpath("//span[@class='label'][(contains(text(),'Account'))]");
     private By logInBtn = By.xpath("//div[@class='links']//a[@title='Log In']");
