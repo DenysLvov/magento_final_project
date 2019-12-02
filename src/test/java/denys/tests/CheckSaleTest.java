@@ -7,9 +7,9 @@ public class CheckSaleTest extends BaseTest{
 
     @Test(description = "Check 'Old and 'Sale' prices in SALE")
     public void checkOldSalePrices() {
-        MainPage mainPage = new MainPage();
 
-        mainPage.setLanguage(MainPage.Language.AUTOMATION)
+
+        mainPage
                 .clickOnSale()
                 .clickgridView()
                 .clickShowDropDown("36")

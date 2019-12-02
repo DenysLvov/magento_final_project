@@ -8,9 +8,9 @@ public class CheckItemsCounterTest extends BaseTest{
 
     @Test (description = "Number of present items is equal to the counter")
     public void checkItemCounterTest(){
-        MainPage mainPage = new MainPage();
 
-        int num = mainPage.setLanguage(MainPage.Language.AUTOMATION)
+
+        int num = mainPage
                 .focusHomeAndDecorMenu()
                 .clickOnElectronicsItem()
                 .clickShowAsList()

@@ -1,22 +1,31 @@
 package denys.tests;
 
+import denys.helpers.DataProviderHelper;
 import denys.page_objects.MainPage;
 import denys.page_objects.WishListPage;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class CheckAddToWishListTest extends BaseTest {
 
-    @Test(description = "My Wishlist shows chosen item")
-    public void checkWishListItems() {
-        MainPage mainPage = new MainPage();
+    /*DataProviderHelper dataProviderHelper = new DataProviderHelper();
 
-        String expProdName = mainPage.setLanguage(MainPage.Language.AUTOMATION)
+    @DataProvider(name ="testdata")
+    public Object[][] readCredentials() {
+        dataProviderHelper =new DataProviderHelper();
+        return dataProviderHelper.readTestData("//testdata.txt");
+    } */
+
+    @Test(description = "My Wishlist shows chosen item")
+    public void checkWishListItems( ) {
+
+
+        String expProdName = mainPage.setLanguage(MainPage.Language.ENGLISH)
                 .clickAccount()
                 .clickLogIn()
-                //TODO: move this to external file
                 .fillEmailField("den_lvov@meta.ua")
                 .fillPasswordField("123456")
                 .clickLoginbtn()

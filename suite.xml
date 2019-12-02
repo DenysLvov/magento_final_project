@@ -3,10 +3,10 @@
         <classes>
             <class name="denys.tests.CheckAddToWishListTest"/>
             <class name="denys.tests.CheckItemsCounterTest"/>
-            <!--class name="denys.tests.CheckPriceFilterTest"/>
+            <class name="denys.tests.CheckPriceFilterTest"/>
             <class name="denys.tests.CheckSaleTest"/>
             <class name="denys.tests.CheckShowSelectTest"/>
-            <class name="denys.tests.CheckSortByTest"/-->
+            <class name="denys.tests.CheckSortByTest"/>
             <class name="denys.tests.CheckShoppingCart"/>
         </classes>
     </test>

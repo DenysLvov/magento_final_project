@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class CheckShoppingCart extends BaseTest {
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     @Step
     public void emptyCart(){
         CartPage cartPage = new CartPage();
@@ -20,8 +20,8 @@ public class CheckShoppingCart extends BaseTest {
 
     @Test(description = "Check add product to Shopping Cart")
     public void checkShoppingCart() {
-        MainPage mainPage = new MainPage();
-        mainPage.setLanguage(MainPage.Language.AUTOMATION)
+
+        mainPage
                 .clickAccount()
                 .clickLogIn()
                 //TODO: move this to external file

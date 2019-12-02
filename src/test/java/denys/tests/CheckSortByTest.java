@@ -8,9 +8,9 @@ public class CheckSortByTest extends BaseTest {
 
     @Test(description = "Price of each next item > than previous if SORT BY = 'Price'")
     public void checkSortBy() {
-        MainPage mainPage = new MainPage();
 
-        mainPage.setLanguage(MainPage.Language.AUTOMATION)
+
+        mainPage
                 .focusHomeAndDecorMenu()
                 .clickOnElectronicsItem()
                 .clickShowAsList()
