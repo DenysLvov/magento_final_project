@@ -1,5 +1,5 @@
 # magento_final_project
-Run tests with 'mvn clean test' command
+Run tests on Firefox browser: 'mvn -Dbrowser=firefox clean test' command. Default browser is Chrome
 
 Generate report with 'mvn allure:serve' command
 
