@@ -7,10 +7,11 @@ import denys.helpers.StringProcessor;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+
 
 import java.util.List;
 import java.util.Random;
@@ -97,13 +98,11 @@ public class ElectronicsPage extends AbstractPage {
             //Counts items on the page
             int numberOfItems = getDriver().findElements(itemAsList).size();
             if (getNextPgSmallArrowBtn().isExists(1)) {
-                Assert.assertEquals(numberOfItems, expectedItems,
-                        String.format("Expect %s items, but found %s items on page %s",
-                                expectedItems, numberOfItems, pageNumber));
+                Assert.assertEquals(      String.format("Expect %s items, but found %s items on page %s",
+                        expectedItems, numberOfItems, pageNumber),numberOfItems, expectedItems);
             } else {
-                Assert.assertTrue(numberOfItems <= expectedItems,
-                        String.format("Expect not more than %s items, but found %s items on page %s",
-                                expectedItems, numberOfItems, pageNumber));
+                Assert.assertTrue(String.format("Expect not more than %s items, but found %s items on page %s",
+                        expectedItems, numberOfItems, pageNumber), numberOfItems <= expectedItems);
             }
             pageNumber++;
         } while (getNextPgSmallArrowBtn().isExists(1));
@@ -143,8 +142,9 @@ public class ElectronicsPage extends AbstractPage {
         for (int i = 0; i < eltList.size() - 1; i++) {
             double priceCurrent = StringProcessor.stringToDouble(eltList.get(i).getText());
             double priceNext = StringProcessor.stringToDouble(eltList.get(i + 1).getText());
-            Assert.assertTrue(priceNext > priceCurrent,
-                    String.format("Expect price %s of next item bigger than price %s of current item", priceNext, priceCurrent));
+            Assert.assertTrue(
+                    String.format("Expect price %s of next item bigger than price %s of current item", priceNext, priceCurrent),
+                    priceNext > priceCurrent);
         }
     }
 
@@ -153,7 +153,7 @@ public class ElectronicsPage extends AbstractPage {
         List<WebElement> elmntsList = getDriver().findElements(priceSelection0_999);
         for (WebElement we : elmntsList) {
             double price = StringProcessor.stringToDouble(we.getText());
-            Assert.assertTrue(price < 100.00, String.format("Price %s less than 100", price));
+            Assert.assertTrue( String.format("Price %s less than 100", price),price < 100.00);
         }
     }
 

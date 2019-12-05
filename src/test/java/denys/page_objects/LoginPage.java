@@ -2,13 +2,9 @@ package denys.page_objects;
 
 import denys.elements.Button;
 import denys.elements.InputField;
-import denys.elements.TextField;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import org.testng.Assert;
-
-import static denys.DriverManager.getDriver;
 
 public class LoginPage extends AbstractPage{
 

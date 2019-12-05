@@ -5,9 +5,10 @@ import denys.elements.DropDownList;
 import denys.helpers.StringProcessor;
 import io.qameta.allure.Step;
 import lombok.Getter;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class SalePage extends AbstractPage {
         for (WebElement we : weList) {
             double oldPrice = StringProcessor.stringToDouble(we.findElement(itemOldPrice).getText());
             double salePrice = StringProcessor.stringToDouble(we.findElement(itemSalePrice).getText());
-            Assert.assertTrue(oldPrice > salePrice, String.format("Expected old price %s > than sale price %s", oldPrice, salePrice));
+            Assert.assertTrue(String.format("Expected old price %s > than sale price %s", oldPrice, salePrice),oldPrice > salePrice);
         }
 
 

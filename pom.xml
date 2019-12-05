@@ -77,6 +77,16 @@
       <artifactId>selenium-edge-driver</artifactId>
       <version>3.141.59</version>
     </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber3-jvm</artifactId>
+      <version>2.7.0</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13-beta-3</version>
+    </dependency>
   </dependencies>
   <build>
     <pluginManagement>
@@ -108,8 +118,7 @@
             </systemProperties>
             <testFailureIgnore>false</testFailureIgnore>
             <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
-            <suiteXmlFiles>suite.xml</suiteXmlFiles>
-          </configuration>
+            </configuration>
           <dependencies>
             <dependency>
               <groupId>org.aspectj</groupId>

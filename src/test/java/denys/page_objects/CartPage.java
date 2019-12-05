@@ -6,8 +6,9 @@ import denys.helpers.StringProcessor;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
+import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.testng.Assert;
+
 
 @Log4j
 public class CartPage extends AbstractPage{
@@ -70,15 +71,11 @@ public class CartPage extends AbstractPage{
         String actualPrice = getProductPrice().getText();
         log.info("Cart: expectPrice: "+expectProdPrice);
         log.info("Cart: actualPrice: "+actualPrice);
-        //soft assertion due to some products hasn't price
-        softAssert.assertEquals(expectProdPrice, actualPrice,
-                String.format("Expected name: %s but found: %s",expectProdPrice, actualPrice));
-    }
+         }
 
     public void checkCartPrices() {
         double grandTotal = StringProcessor.stringToDouble(GrandTotal.getText());
         double subTotal = StringProcessor.stringToDouble(SubTotal.getText());
-        Assert.assertEquals(grandTotal, subTotal,
-                String.format("Expected: 'Grand total' value %s  = Subtotal value %s", grandTotal, subTotal));
+        Assert.assertEquals(grandTotal, subTotal);
     }
 }
