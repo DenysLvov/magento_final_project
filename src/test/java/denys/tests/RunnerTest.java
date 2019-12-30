@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"io.qameta.allure.cucumber3jvm.AllureCucumber3Jvm", "pretty",
                 "json:target/cucumber-report/report.json"},
         features = "src/test/resources",
-        glue = "src.test.java.com.brainacad.def"
+        glue = "src.test.java.denys.stepsdefinition"
         //tags = "@myTag"
 )
 

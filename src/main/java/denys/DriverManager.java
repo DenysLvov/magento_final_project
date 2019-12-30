@@ -22,7 +22,7 @@ public class DriverManager {
     }
 
     private static void initDriver() {
-        String browser = System.getProperty("browser", "firefox");
+        String browser = System.getProperty("browser", "chrome");
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             //ChromeOptions options = new ChromeOptions();

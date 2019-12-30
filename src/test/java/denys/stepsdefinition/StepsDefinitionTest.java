@@ -1,21 +1,29 @@
 package denys.stepsdefinition;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
+import denys.page_objects.LoginPage;
 import denys.page_objects.MainPage;
-import org.openqa.selenium.WebDriver;
+import io.cucumber.java.After;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.AfterClass;
+import org.junit.Assert;
 
 import static denys.DriverManager.getDriver;
+import static denys.DriverManager.killDriver;
 
 public class StepsDefinitionTest {
 
+    @After
+    public void shutDown() {
+        killDriver();
+    }
+
     private String URL = "http://magento.mainacad.com/index.php/english";
-    WebDriver  webDriver;
 
-
-    MainPage mainPage = new MainPage();
-
-
+    MainPage mainPage;
+    LoginPage loginPage;
 
     public enum Language {
         AUTOMATION("Automation"),
@@ -34,13 +42,33 @@ public class StepsDefinitionTest {
     }
 
     @Given("I have website {string}")
-    public void iHaveWebSiteByUrl(String url){
-        webDriver = getDriver();
-        webDriver.get(url);
+    public void iHaveWebSiteByUrl(String url) {
+        getDriver().get(url);
+        mainPage = new MainPage();
     }
 
     @When("I choose language {string}")
-    public void iChooseLanguage(String arg0) {
-        mainPage.setLanguage(MainPage.Language.AUTOMATION);
+    public void iChooseLanguage(String lang) {
+        switch (lang) {
+            case "automation":
+                mainPage.setLanguage(MainPage.Language.AUTOMATION);
+                break;
+            case "english":
+                mainPage.setLanguage(MainPage.Language.ENGLISH);
+                break;
+            default:
+                mainPage.setLanguage(MainPage.Language.AUTOMATION);
         }
+    }
+
+    @And("I click Account - Login")
+    public void iClickAccountLogin() {
+        loginPage = mainPage.clickAccount()
+                .clickLogIn();
+    }
+
+    @Then("Login or create account page is opened")
+    public void loginOrCreateAccountPageIsOpened() {
+        Assert.assertEquals(loginPage.getPageHeader().getText().toLowerCase(), "login or create an account");
+    }
 }
